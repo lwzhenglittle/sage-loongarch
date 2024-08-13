@@ -5,6 +5,8 @@ export VARPREFIX="$SAGE_LOCAL/var"
 export PREFIX="$SAGE_LOCAL"
 bash ./Configure || sdh_die "Error configuring SYMPOW"
 
+sed -i 's/-DFPUCONTROLH//g' Makefile
+
 sdh_make
 
 sdh_make_install
