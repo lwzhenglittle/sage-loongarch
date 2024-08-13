@@ -1,3 +1,7 @@
+# 说明
+
+本仓库旨在为 LoongArch 构建可用的 SageMath，主要包含一些必须的补丁，讨论贴[loongson-community/discussions issue #53](https://github.com/loongson-community/discussions/issues/53)，以下为原 README.md
+
 <div>
 <a href="https://sagemath.org">
   <picture>
