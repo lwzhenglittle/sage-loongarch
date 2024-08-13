@@ -165,6 +165,16 @@ sdh_configure() {
     if [ -z "$CONFIG_SHELL" ]; then
         export CONFIG_SHELL=`command -v bash`
     fi
+    dir_a=$(grep AC_CONFIG_AUX_DIR configure.ac | sed 's/AC_CONFIG_AUX_DIR(\[\(.*\)\])/\1/')
+    dir_b=$(grep AC_CONFIG_AUX_DIR configure.ac | sed 's/AC_CONFIG_AUX_DIR(\(.*\))/\1/')
+    config_aux_dir=""
+    if [ ${#dir_a} -lt ${#dir_b} ]; then
+        config_aux_dir=$dir_a
+    else 
+        config_aux_dir=$dir_b
+    fi
+    cp $SAGE_ROOT/config/config.guess ./$config_aux_dir
+    cp $SAGE_ROOT/config/config.sub ./$config_aux_dir
     ./configure --prefix="$SAGE_INST_LOCAL" --libdir="$SAGE_INST_LOCAL/lib" --disable-static --disable-maintainer-mode --disable-dependency-tracking "$@"
     if [ $? -ne 0 ]; then # perhaps it is a non-autoconf'd project
       ./configure --prefix="$SAGE_INST_LOCAL" --libdir="$SAGE_INST_LOCAL/lib" --disable-static "$@"
