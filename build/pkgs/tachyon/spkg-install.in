@@ -30,6 +30,9 @@ case "$UNAME" in
     armv6l*|armv7l*)
         TARGET=linux-arm-thr
         ;;
+    loongarch64*|mips64el*|riscv64*)
+        TARGET=linux-generic-thr
+        ;;
     esac
     ;;
 "SunOS")
